@@ -15,35 +15,30 @@ public class PlayerControls : MonoBehaviour
     private float _maxDown;
     private float _maxUp;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         _mainCam = Camera.main;
 
         StartCoroutine(SetBoundaries());
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-      if (Touch.fingers[0].isActive) // Samsung phones issue
-      //if (Touch.activeTouches.Count > 0) // solution, other issues in Editor
+     // if (Touch.fingers[0].isActive) // Samsung phones issue
+        if (Touch.activeTouches.Count > 0) // solution, other issues in Editor
         {
-            //if (Touch.activeTouches[0].finger.index == 0)
-            //{
+                if (Touch.activeTouches[0].finger.index == 0)
+                {
                 Touch myTouch = Touch.activeTouches[0];
                 Vector3 touchPos = myTouch.screenPosition;
 
-                /*#if UNITY_EDITOR
+                #if UNITY_EDITOR
+                    if (touchPos.x == Mathf.Infinity)
+                    {
+                        return;
+                    }
+                #endif
 
-                if (touchPos.x == Mathf.Infinity)
-                {
-                    return;
-                }
-
-                #endif*/
                 touchPos = _mainCam.ScreenToWorldPoint(touchPos);
 
 
@@ -56,7 +51,7 @@ public class PlayerControls : MonoBehaviour
                 {
                     transform.position = new Vector3(touchPos.x - _offset.x, touchPos.y - _offset.y, 0);
                 }
-            //}
+            }
 
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, _maxLeft, _maxRight), Mathf.Clamp(transform.position.y, _maxDown, _maxUp), 0);
         }
