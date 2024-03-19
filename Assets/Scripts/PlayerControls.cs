@@ -70,7 +70,7 @@ public class PlayerControls : MonoBehaviour
 
     private IEnumerator SetBoundaries()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.4f);
 
         _maxLeft = _mainCam.ViewportToWorldPoint(new Vector2(0.15f, 0)).x;
         _maxRight = _mainCam.ViewportToWorldPoint(new Vector2(0.85f, 0)).x;
