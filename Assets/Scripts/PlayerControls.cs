@@ -52,7 +52,6 @@ public class PlayerControls : MonoBehaviour
                     transform.position = new Vector3(touchPos.x - _offset.x, touchPos.y - _offset.y, 0);
                 }
             }
-
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, _maxLeft, _maxRight), Mathf.Clamp(transform.position.y, _maxDown, _maxUp), 0);
         }
     }

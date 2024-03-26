@@ -6,11 +6,6 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] protected float health;
 
-    void Start()
-    {
-        
-    }
-
     public void TakeDamage(float dmg)
     {
         health -= dmg;
